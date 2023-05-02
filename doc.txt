@@ -1,0 +1,26 @@
+policies
+
+health
+home
+vechile
+
+
+VECHILE:
+
+Vehicle details-
+---------------------------
+
+vehicle number
+brand 
+model
+fuel type
+variant
+
+
+Contact Details-
+---------------------------
+Name
+Email
+Mobile Number
+
+
