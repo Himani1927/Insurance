@@ -24,3 +24,16 @@ Email
 Mobile Number
 
 
+policies
+
+policyCode: String
+policyType: String
+policyCover: Double
+policyDuration: Int
+policyPremiumYearly: Double
+policyPremiumMonthly: Double
+policyDescription: String
+policyFeatures: List<String>
+
+
+
