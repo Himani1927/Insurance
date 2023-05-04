@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document
 data class Policies(
 
     @Id
+    val id: String?,
     val policyCode: String,
     var policyType: String,
     var policyCover: Double,

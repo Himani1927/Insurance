@@ -2,6 +2,7 @@ package com.insurance.policyService.controller
 
 import com.insurance.policyService.model.Policies
 import com.insurance.policyService.service.PolicyService
+import com.insurance.policyService.service.PolicyServiceImpl
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -16,7 +17,7 @@ import reactor.core.publisher.Mono
 @RestController
 @RequestMapping("/maxinsure")
 class PolicyController(
-    private val service: PolicyService
+    private val service: PolicyServiceImpl
 ) {
 
     @GetMapping("/policies/all")
@@ -32,7 +33,6 @@ class PolicyController(
     fun updatePolicy(@RequestBody policy: Mono<Policies>, @PathVariable policyCode : String) : Mono<Policies> {
         return service.updatePolicyByCode(policy,policyCode)
     }
-
     @DeleteMapping("/policies/delete/{policyCode}")
     fun deletePolicy(@PathVariable policyCode: String) : Mono<Void> = service.deletePolicyByCode(policyCode)
 
