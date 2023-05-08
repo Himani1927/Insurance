@@ -1,6 +1,7 @@
 package com.insurance.customerService.model
 
 import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 import java.util.*
 
@@ -8,11 +9,11 @@ import java.util.*
 data class CarInsurance(
 
     @Id
-    val id : String?,
-    var userFirstName : String,
-    var userLastName : String,
-    var userEmail : String,
-    var userContactNo : String,
+    val id : Int?,
+    var firstName : String,
+    var lastName : String,
+    var email : String,
+    var contactNo : String,
     val regNumber : String,
     var ownerName : String,
     val engineNumber: String,
@@ -25,6 +26,7 @@ data class CarInsurance(
     val modelName : String,
     val fuelType : String,
     val variantName : String,
-    val policyCode : String,
+    @DBRef
+    var policyDetails: PolicyDetails?=null,
 
 )

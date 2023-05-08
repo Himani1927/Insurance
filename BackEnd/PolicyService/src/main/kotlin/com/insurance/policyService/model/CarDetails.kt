@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document
 data class CarDetails(
 
     @Id
-    val id: String?,
+    val carId: Int?,
     val carBrand:String,
     val carType:String,
     val modelName:String,

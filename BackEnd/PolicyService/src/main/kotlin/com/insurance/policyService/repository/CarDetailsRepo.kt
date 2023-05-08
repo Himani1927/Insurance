@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository
 import reactor.core.publisher.Flux
 
 @Repository
-interface CarDetailsRepo : ReactiveMongoRepository<CarDetails , String> {
+interface CarDetailsRepo : ReactiveMongoRepository<CarDetails , Int> {
 
     @Aggregation("{ \$group: { _id: '\$carBrand' } }")
     fun getAllCarBrands(): Flux<Map<String, Any>>
