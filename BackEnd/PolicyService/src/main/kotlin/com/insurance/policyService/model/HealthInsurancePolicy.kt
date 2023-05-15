@@ -11,6 +11,7 @@ data class HealthInsurancePolicy(
     val planCode: String,
     val planName: String,
     var planFeatures : List<String>,
+    var planCover : Int,
     val basePrice: Int,
     val totalCost : Int = 0,
     val costWithGst : Int = 0

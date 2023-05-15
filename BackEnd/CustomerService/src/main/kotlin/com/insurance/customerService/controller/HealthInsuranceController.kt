@@ -14,7 +14,7 @@ class HealthInsuranceController(
 ) {
 
     @PostMapping("/user/add")
-    fun addUser(@RequestBody user : Mono<HealthInsurance>) : Mono<HealthInsurance> =service.addUser(user)
+    fun addUser(@RequestBody user : Mono<HealthInsurance>) : Mono<HealthInsurance> = service.addUser(user)
 
     @GetMapping("/user/all")
     fun getAllUser() : Flux<HealthInsurance> = service.getAllUsers()
@@ -22,7 +22,7 @@ class HealthInsuranceController(
     @GetMapping("/user/{email}")
     fun getUserByEmail(@PathVariable email : String ) : Flux<HealthInsurance> = service.getByEmail(email)
 
-    @GetMapping("/user/{policyCode}")
-    fun getByPolicyCode(@PathVariable policyCode : String) : Mono<HealthInsurance> = service.getByPolicyCode(policyCode)
+    @GetMapping("/user/{planCode}")
+    fun getByPlanCode(@PathVariable planCode : String) : Flux<HealthInsurance> = service.getByPlanCode(planCode)
 
 }

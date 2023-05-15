@@ -10,6 +10,6 @@ interface HealthInsuranceService {
     fun getPolicies() : Flux<HealthInsurancePolicy>
     fun getById( id : String ) : Mono<HealthInsurancePolicy>
     fun deleteById( id : String) : Mono<Void>
-    fun getByPreviousIllnessAndDuration( previousIllness : Boolean , duration : Int) : Flux<HealthInsurancePolicy>
+    fun getByChecks( previousIllness : Boolean , duration : Int, cover : Int , age : Int) : Flux<HealthInsurancePolicy>
 
 }

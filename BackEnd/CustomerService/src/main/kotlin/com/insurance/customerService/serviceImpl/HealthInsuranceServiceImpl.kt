@@ -6,6 +6,7 @@ import com.insurance.customerService.service.HealthInsuranceService
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.random.Random
@@ -22,7 +23,12 @@ class HealthInsuranceServiceImpl(
     override fun addUser(user: Mono<HealthInsurance>): Mono<HealthInsurance> {
         return user.flatMap { u ->
             val code = generateCode()
-            u.policyDetails = u.policyDetails.copy(policyCode = code)
+            val startDate = LocalDate.now()
+            val endDate = startDate.plusYears(u.policyDetails.durationInYears.toLong())
+            u.policyDetails = u.policyDetails.copy(policyCode = code,
+                startDate = startDate,
+                endDate = endDate,
+                policyStatus = "Active")
             repo.save(u) }
     }
 
@@ -31,19 +37,19 @@ class HealthInsuranceServiceImpl(
         val randomLetters = (1..2).map { Random.nextInt('A'.code, 'Z'.code + 1).toChar() }.joinToString("")
         val currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("mmss"))
 
-        return "$currentDate$randomLetters$currentTime"
+        return "HL$currentDate$randomLetters$currentTime"
     }
 
-    override fun deleteUser(id: String): Mono<Void> {
-        return repo.deleteById(id)
-    }
+//    override fun deleteUser(id: String): Mono<Void> {
+//        return repo.deleteById(id)
+//    }
 
     override fun getByEmail(email: String): Flux<HealthInsurance> {
         return repo.findByEmail(email)
     }
 
-    override fun getByPolicyCode(policyCode: String): Mono<HealthInsurance> {
-        return repo.findByPolicyDetails_PolicyCode(policyCode)
+    override fun getByPlanCode(planCode: String): Flux<HealthInsurance> {
+        return repo.findByPolicyDetails_PlanCode(planCode)
     }
 
 

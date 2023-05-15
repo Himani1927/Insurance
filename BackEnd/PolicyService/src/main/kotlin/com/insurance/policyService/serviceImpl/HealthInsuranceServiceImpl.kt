@@ -34,15 +34,25 @@ class HealthInsuranceServiceImpl(
         return repo.deleteById(id)
     }
 
-    override fun getByPreviousIllnessAndDuration(previousIllness: Boolean, duration: Int): Flux<HealthInsurancePolicy> {
-        return repo.findAll().map { p ->
+    override fun getByChecks(
+        previousIllness: Boolean, duration: Int, cover: Int, age: Int
+    ): Flux<HealthInsurancePolicy> {
+        return repo.findByPlanCover(cover).map { p ->
             val basePrice = p.basePrice
-            if(previousIllness){
+            if((previousIllness && age<60)) {
                 p.copy(basePrice = basePrice+200,
                     totalCost = (basePrice+200)*duration*12,
                     costWithGst = (basePrice+200)*duration*12*118/100)
+            }else if(age<60 && !previousIllness ){
+                p.copy(totalCost = basePrice*duration*12,
+                    costWithGst = basePrice*duration*12*118/100)
+            }else if(age>60 && previousIllness){
+                p.copy(basePrice = basePrice+200,
+                    totalCost = (basePrice+200)*duration*12,
+                    costWithGst = (basePrice+200)*duration*12*105/100)
             }else{
-                p.copy(totalCost = basePrice*duration*12 , costWithGst = basePrice*duration*12*118/100)
+                p.copy(totalCost = basePrice*duration*12,
+                    costWithGst = basePrice*duration*12*105/100)
             }
         }
     }

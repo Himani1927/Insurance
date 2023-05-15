@@ -44,4 +44,8 @@ class HomeInsuranceServiceImpl(
             policy.copy(basePrice = basePrice + additionalCost, totalPrice = (basePrice + additionalCost)*duration*12)
         }
     }
+
+    override fun getByCostAndDuration(propertyCost: Int, duration: Int): Flux<HomeInsurancePolicy> {
+        TODO("Not yet implemented")
+    }
 }

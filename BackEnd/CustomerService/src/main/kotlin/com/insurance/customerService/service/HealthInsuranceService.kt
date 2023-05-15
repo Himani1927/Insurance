@@ -9,8 +9,8 @@ interface HealthInsuranceService {
 
     fun getAllUsers() : Flux<HealthInsurance>
     fun addUser(user : Mono<HealthInsurance>) : Mono<HealthInsurance>
-    fun deleteUser( id : String) : Mono<Void>
+//    fun deleteUser( id : String) : Mono<Void>
     fun getByEmail(email: String): Flux<HealthInsurance>
-    fun getByPolicyCode(policyCode : String) : Mono<HealthInsurance>
+    fun getByPlanCode(planCode : String) : Flux<HealthInsurance>
 
 }

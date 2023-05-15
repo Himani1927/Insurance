@@ -9,5 +9,5 @@ import reactor.core.publisher.Mono
 @Repository
 interface HealthInsuranceRepo : ReactiveMongoRepository<HealthInsurance, String> {
     fun findByEmail(email: String): Flux<HealthInsurance>
-    fun findByPolicyDetails_PolicyCode(policyCode: String): Mono<HealthInsurance>
+    fun findByPolicyDetails_PlanCode(planCode: String): Flux<HealthInsurance>
 }

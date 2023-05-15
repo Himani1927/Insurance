@@ -23,4 +23,5 @@ class HomeInsuranceController(
     @GetMapping("/user/{email}")
     fun getUserByEmail(@PathVariable email : String ) : Flux<HomeInsurance> = service.getByEmail(email)
 
+
 }

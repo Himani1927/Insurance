@@ -2,6 +2,7 @@ package com.insurance.policyService.controller
 
 import com.insurance.policyService.model.HomeInsurancePolicy
 import com.insurance.policyService.service.HomeInsuranceService
+import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -15,6 +16,7 @@ import reactor.core.publisher.Mono
 
 @RestController
 @RequestMapping("/maxinsure/policies/homeinsurance")
+@CrossOrigin("http://localhost:3000")
 class HomeInsuranceController(
     private val service: HomeInsuranceService
 ) {

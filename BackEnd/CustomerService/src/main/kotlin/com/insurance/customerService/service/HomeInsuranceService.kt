@@ -6,9 +6,9 @@ import reactor.core.publisher.Mono
 
 interface HomeInsuranceService {
 
-    fun getAllUsers() : Flux<HomeInsurance>
+//    fun getAllUsers() : Flux<HomeInsurance>
     fun addUser(user : Mono<HomeInsurance>) : Mono<HomeInsurance>
-    fun deleteUser( id : String) : Mono<Void>
+//    fun deleteUser( id : String) : Mono<Void>
     fun getByEmail(email: String): Flux<HomeInsurance>
 
 }

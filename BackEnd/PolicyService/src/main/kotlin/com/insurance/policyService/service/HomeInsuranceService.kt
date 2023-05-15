@@ -12,5 +12,6 @@ interface HomeInsuranceService {
     fun getById(id : String) : Mono<HomeInsurancePolicy>
     fun getByPlanType(planType : String) : Flux<HomeInsurancePolicy>
     fun getByPlanTypeAndCostAndDuration(planType: String , propertyCost : Int , duration : Int) : Flux<HomeInsurancePolicy>
+    fun getByCostAndDuration( propertyCost : Int , duration : Int) : Flux<HomeInsurancePolicy>
 
 }

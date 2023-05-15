@@ -34,8 +34,11 @@ class HealthInsuranceController (
     }
 
     @GetMapping("/checks")
-    fun getByPreviousIllnessAndDuration(@RequestParam illness : Boolean , @RequestParam duration : Int) : Flux<HealthInsurancePolicy> {
-        return service.getByPreviousIllnessAndDuration(illness , duration)
+    fun getByChecks(
+        @RequestParam illness : Boolean , @RequestParam duration : Int ,
+        @RequestParam cover : Int, @RequestParam age : Int
+        ) : Flux<HealthInsurancePolicy> {
+        return service.getByPreviousIllnessAndDuration(illness , duration , cover , age)
     }
 
 }
