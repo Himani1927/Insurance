@@ -1,0 +1,9 @@
+server:
+  port: 9092
+
+spring:
+  data:
+    mongodb:
+      database: MaxInsuredb
+      host: localhost
+      port: 27017

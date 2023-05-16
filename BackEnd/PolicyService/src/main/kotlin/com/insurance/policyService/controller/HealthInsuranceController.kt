@@ -9,6 +9,7 @@ import reactor.core.publisher.Mono
 
 @RestController
 @RequestMapping("/maxinsure/policies/healthinsurance")
+@CrossOrigin("http://localhost:3000")
 class HealthInsuranceController (
     private val service : HealthInsuranceService
 ) {
@@ -38,7 +39,7 @@ class HealthInsuranceController (
         @RequestParam illness : Boolean , @RequestParam duration : Int ,
         @RequestParam cover : Int, @RequestParam age : Int
         ) : Flux<HealthInsurancePolicy> {
-        return service.getByPreviousIllnessAndDuration(illness , duration , cover , age)
+        return service.getByChecks(illness , duration , cover , age)
     }
 
 }

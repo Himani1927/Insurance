@@ -8,10 +8,45 @@ export default function BasicDetails({ insuranceData, setInsuranceData, handleNe
         setInsuranceData({ ...insuranceData, [e.target.name]: e.target.value })
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (insuranceData.firstName.trim() === '') {
+            window.alert('Please enter First Name');
+            return;
+        }
+        if (!/^[a-zA-Z]+$/.test(insuranceData.firstName)) {
+            window.alert('First Name should only contain alphabets');
+            return;
+        }
+        if (insuranceData.lastName.trim() === '') {
+            window.alert('Please enter Last Name');
+            return;
+        }
+        if (!/^[a-zA-Z]+$/.test(insuranceData.lastName)) {
+            window.alert('Last Name should only contain alphabets');
+            return;
+        }
+        if (insuranceData.contactNo.trim() === '') {
+            window.alert('Please enter Contact Number');
+            return;
+        }
+        if (!insuranceData.email.endsWith('.com')) {
+            window.alert('Please enter a valid Email address ending with .com');
+            return;
+          }
+
+        if ( !/^\d{10}$/.test(insuranceData.contactNo)) {
+            window.alert('Contact Number should be 10 digits');
+            return;
+        }
+        handleNext()
+    }
+
     return (
         <div style={{ maxWidth: '750px', margin: '10px auto' }}>
             <Typography variant='h5' gutterBottom>Basic Info</Typography>
-            <form onSubmit={handleNext}>
+            <form onSubmit={handleSubmit}>
                 <Grid container spacing={1.5} style={{ padding: '5px' }} >
                     <Grid item xs={12} sm={6}>
                         <TextField label="First Name" color='secondary' fullWidth

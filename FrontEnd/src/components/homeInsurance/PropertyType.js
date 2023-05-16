@@ -23,7 +23,7 @@ export default function PropertyType({
     return (
         <div style={{ maxWidth: '750px', margin: '10px auto' }}>
             <Typography variant='h5' gutterBottom>Property Info</Typography>
-            <form>
+            <form onSubmit={handleNext}>
                 <Grid container spacing={1.5} style={{ padding: '5px' }} >
                     <Grid item xs={3}>
                         <Typography>Property Type</Typography>
@@ -72,7 +72,7 @@ export default function PropertyType({
                         <Button variant='contained' color='secondary' fullWidth onClick={handleBack}>Back</Button>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <Button variant='contained' type='submit' color='secondary' fullWidth onClick={handleNext} >Next</Button>
+                        <Button variant='contained' type='submit' color='secondary' fullWidth >Next</Button>
                     </Grid>
                 </Grid>
             </form>

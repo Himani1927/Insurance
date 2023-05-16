@@ -27,7 +27,10 @@ export const getHomeInsurancePlans = async (planType, duration, cost) => {
 }
 export const getHealthInsurancePlans = async (age, duration, cover, illness) => {
 
-    const result = await axios.get(`${API_URL}/healthinsurance/checks?illness=${illness}&duration=${duration}
-                                    &cover=${cover}&age=${age}`)
+    console.log(age,duration,cover,illness)
+    const result = await axios.get(
+        `${API_URL}/healthinsurance/checks?illness=${illness}&duration=${duration}&cover=${cover}&age=${age}`
+        )
+    return result.data
 
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getHomeInsurancePlans } from '../../services/PolicyService'
-import { Button, Card, CardContent, Grid, MenuItem, Select, TextField, Typography } from '@mui/material';
+import { Button, Card, CardContent, Grid, MenuItem, Select, Typography } from '@mui/material';
 import { CurrencyRupee } from '@mui/icons-material';
 
 
@@ -28,7 +28,7 @@ export default function SelectPlan({
         type = "BUILDING";
         planCover = insuranceData.buildingValue
     } else {
-        type = "Household-Items";
+        type = "HOUSEHOLD-ITEMS";
         planCover = insuranceData.itemsValue
     }
 

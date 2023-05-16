@@ -9,6 +9,7 @@ import reactor.core.publisher.Mono
 
 @RestController
 @RequestMapping("/maxinsure/healthinsurance")
+@CrossOrigin("http://localhost:3000")
 class HealthInsuranceController(
     private val service: HealthInsuranceService
 ) {

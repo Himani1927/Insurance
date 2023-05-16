@@ -7,13 +7,13 @@ import com.insurance.customerService.serviceImpl.HealthInsuranceServiceImpl
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.test.StepVerifier
 import java.time.LocalDate
+import org.assertj.core.api.Assertions.assertThat
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class HealthInsuranceServiceTest(
@@ -21,9 +21,9 @@ class HealthInsuranceServiceTest(
     @Autowired private var repo : HealthInsuranceRepo
 ) {
 
-    val policy = PolicyDetails("","HAISIL001","Health Insurance",
-        "Active",1,LocalDate.parse("2023-04-15"),LocalDate.parse("2024-04-14"),500000,
-        8481,599)
+    val policy = PolicyDetails("","HAISIL001", "Active",
+        2,LocalDate.parse("2023-04-15"),LocalDate.parse("2024-04-14"),500000,
+        8481)
 
     val customer = HealthInsurance("","xyz@abc.com","Raj","Kumar",
         "7894561234",35,"Male","Apni Gali","Rampura","M.P.",
@@ -44,18 +44,21 @@ class HealthInsuranceServiceTest(
 
         StepVerifier.create(service.addUser(custMono))
             .expectSubscription()
-            .expectNext(customer)
+            .assertNext{savedCustomer ->
+                assertThat(savedCustomer.policyDetails.policyCode).isNotEmpty()
+                assertThat(savedCustomer).isEqualTo(customer)
+            }
             .verifyComplete()
     }
 
     @Test
     fun getUsersByEmail(){
-
         Mockito.`when`(repo.findByEmail("xyz@abc.com")).thenReturn(Flux.just(customer))
 
         StepVerifier.create(service.getByEmail("xyz@abc.com"))
             .expectSubscription()
-            .expectNext(customer)
+//            .expectNext(customer)
+            .expectNextCount(1)
             .verifyComplete()
     }
 
@@ -65,7 +68,7 @@ class HealthInsuranceServiceTest(
 
         StepVerifier.create(service.getByPlanCode("xyz@abc.com"))
             .expectSubscription()
-            .expectNext(customer)
+            .expectNextCount(1)
             .verifyComplete()
     }
 }

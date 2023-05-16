@@ -17,7 +17,7 @@ export default function MedicalDetails({
     return (
         <div style={{ maxWidth: '750px', margin: '10px auto' }}>
             <Typography variant='h5' gutterBottom>Medical Details</Typography>
-            <form>
+            <form onSubmit={handleNext}>
                 <Grid container spacing={1.5} style={{ padding: '5px' }} >
                     <Grid item xs={6}>
                         <Typography sx={{ display: 'inline' }} marginRight={'25px'}>Gender</Typography>
@@ -51,22 +51,22 @@ export default function MedicalDetails({
                     <Grid item xs={6} >
                         <TextField label="Year" color='secondary' type='number' fullWidth
                             value={insuranceData.diagnosisYear} name='itemsValue'
-                            onChange={handleChange} disabled={insuranceData.hasPriorIllness}
+                            onChange={handleChange} disabled={!insuranceData.hasPriorIllness}
                             variant='outlined' placeholder='Year of Diagnosis' required />
                     </Grid>
                     <Grid item xs={12}>
                         <TextField label="Names" color='secondary' type='text' fullWidth
                             value={insuranceData.priorIllnessName} name='priorIllnessName'
-                            onChange={handleChange} disabled={insuranceData.hasPriorIllness}
-                            variant='outlined' 
-                            placeholder='Enter Illness Name for example - diabetes, Hypertension, Any earlier surguries' 
+                            onChange={handleChange} disabled={!insuranceData.hasPriorIllness}
+                            variant='outlined'
+                            placeholder='Enter Illness Name for example - diabetes, Hypertension, Any earlier surguries'
                             required />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Button variant='contained' color='secondary' fullWidth onClick={handleBack}>Back</Button>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <Button variant='contained' type='submit' color='secondary' fullWidth onClick={handleNext} >Next</Button>
+                        <Button variant='contained' type='submit' color='secondary' fullWidth >Next</Button>
                     </Grid>
                 </Grid>
             </form>

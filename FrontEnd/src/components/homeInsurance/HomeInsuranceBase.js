@@ -9,7 +9,8 @@ import Navbar from '../../Bar/Navbar';
 import '../../App.css'
 import AddressDetails from './AddressDetails';
 import Declaration from './Declaration';
-import Payment from './Payment';
+import Payment from '../healthInsurance/Payment';
+
 
 export default function HomeInsuranceBase() {
 
@@ -127,13 +128,13 @@ export default function HomeInsuranceBase() {
                 {progress === 4 && (
                     <Declaration
                         handleNext={handleNext}
-                        handleBack={handleBack}
+                        setProgress={setProgress}
                     />
                 )}
                 {progress === 5 && (
                     <Payment
                         insuranceData={insuranceData}
-                        setInsuranceData={setInsuranceData}
+                        type = {'home'}
                     />
                 )}
             </Card>

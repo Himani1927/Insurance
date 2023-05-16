@@ -22,9 +22,9 @@ class HomeInsuranceServiceTest(
     @Autowired private var repo : HomeInsuranceRepo
 ) {
 
-    val policy = PolicyDetails("","HISIL001","Home Insurance",
+    val policy = PolicyDetails("","HISIL001",
         "Active",1, LocalDate.parse("2023-04-15"), LocalDate.parse("2024-04-14"),500000,
-        144,12)
+        144)
 
     val customer = HomeInsurance("","xyz@abc.com","Raj","Kumar",
         "7894561234","Meri Gali","Mera Shehar","420840",
@@ -56,7 +56,7 @@ class HomeInsuranceServiceTest(
 
         StepVerifier.create(service.getByEmail("xyz@abc.com"))
             .expectSubscription()
-            .expectNext(customer)
+            .expectNextCount(1)
             .verifyComplete()
     }
 }

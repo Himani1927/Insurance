@@ -27,12 +27,11 @@ class PaymentServiceImpl(
     override fun addPayment(payment: Mono<PaymentDetails>): Mono<PaymentDetails> {
         return payment.flatMap { p ->
             val txn = generatedId()
-            val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-            val timeFormatter = DateTimeFormatter.ofPattern("HHmmsss")
-            val date = LocalDate.parse(p.paymentDate.toString(),dateFormatter)
-            val time = LocalTime.parse(p.paymentTime.toString(),timeFormatter)
-            val updated = p.copy(transactionId = txn, paymentDate = date, paymentTime = time)
-            repo.insert(updated)
+            val date = LocalDate.now()
+            val time = LocalTime.now()
+            val updated = p.copy(transactionId = txn, paymentDate = date,
+                paymentTime = time , paymentStatus = "Successfull")
+            repo.insert(updated).thenReturn(updated)
         }
     }
 

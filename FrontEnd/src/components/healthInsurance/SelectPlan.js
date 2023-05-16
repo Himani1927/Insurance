@@ -21,10 +21,9 @@ export default function SelectPlan({
         }));
         if (e.target.name === 'durationInYears') {
             setDuration(e.target.value)
+        }else if(e.target.name === 'policyCover'){
+            setCover(e.target.value)
         }
-        // }else if(e.target.name === 'policyCover'){
-        //     setCover(e.target.value)
-        // }
         console.log(insuranceData)
     }
 
@@ -45,8 +44,7 @@ export default function SelectPlan({
             policyDetails: {
                 ...insuranceData.policyDetails,
                 planCode: plan.planCode,
-                totalPremium: plan.totalPrice,
-                planCover: plan.planCover
+                totalPremium: plan.costWithGst,
             }
         });
         console.log(insuranceData)
@@ -87,10 +85,10 @@ export default function SelectPlan({
                         <Card style={{ backgroundColor: 'lightblue', height: '100%' }}>
                             <CardContent>
                                 <Typography variant="h6">{plan.planName}</Typography>
-                                <Typography variant="subtitle1">{plan.planType}</Typography>
                                 <Typography variant="subtitle2">{plan.planFeatures.join(', ')}</Typography>
                                 <Typography variant="h5"><CurrencyRupee /> {plan.basePrice}/month</Typography>
-                                <Typography variant="h5"><CurrencyRupee />Total Premium {plan.totalPrice}</Typography>
+                                <Typography variant="h5"><CurrencyRupee />Total Premium {plan.totalCost}</Typography>
+                                <Typography variant="h5"><CurrencyRupee />with GST {plan.costWithGst}</Typography>
                                 <Button variant="contained" style={{ marginTop: '30px' }}
                                     color="primary" onClick={() => handleSelect(plan)}>Select
                                 </Button>
